@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "coreweave-circuit-breaker"
+version = "0.1.0"
+description = "GPU isolation and controlled recovery circuit breaker"
+requires-python = ">=3.11"
+license = {text = "Proprietary"}
+authors = [{name = "Casey Barton"}]
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<10", "ruff>=0.9,<1"]
+
+[project.scripts]
+coreweave-circuit-breaker = "circuit_breaker:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+py-modules = ["circuit_breaker"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "RUF"]

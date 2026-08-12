@@ -1,13 +1,17 @@
-name: CI
+name: Legacy Private CI - Manual Recovery Only
 
+# Automatic verification for this private repository executes from
+# GlacierEQ/public-actions-runner-host through the governed public action face.
+# Keeping this workflow manual-only prevents private Actions budget from
+# becoming an execution gate.
 on:
-  push:
-    branches: [main, develop]
-  pull_request:
-    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
-  ci:
+  legacy-manual-ci:
     uses: GlacierEQ/public-actions-runner-host/.github/workflows/reusable-quick-ci.yml@main
     with:
       repo_name: ${{ github.event.repository.name }}
